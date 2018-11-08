@@ -1,8 +1,9 @@
 # todo
 Express-Mongo-React application
 
-
 This a ToDo Application with ExpressJS, NodeJS, MongoDB as backend. ReactJS with redux as frontend.
+
+This application is written as a part of POC for NodeJS, ExpressJS and ReactJS with redux plus unit testing JS frameworks.
 
 Frontend runs on port 3001.
 Backend runs on port 3000.
