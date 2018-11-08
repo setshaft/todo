@@ -1,54 +1,52 @@
-var ToDo = require('../models/todo.models')
-_this = this
+const ToDo = require('../models/todo.models');
+_this = this;
 exports.getTodos = async function(query, page, limit){
-    var options = {
+    const options = {
         page,
         limit
-    }
+    };
     try {
-        var todos = await ToDo.paginate(query, options)
-        return todos;
+        return await ToDo.paginate(query, options);
     } catch (e) {
         throw Error('Error while Paginating Todos')
     }
-}
+};
 exports.createTodo = async function(todo){
-    var newTodo = new ToDo({
+    const newTodo = new ToDo({
         title: todo.title,
         description: todo.description,
         date: new Date(),
         status: todo.status
-    })
+    });
     try{
-        var savedTodo = await newTodo.save()
-        return savedTodo;
+        return await newTodo.save();
     }catch(e){
         throw Error("Error while Creating Todo")
     }
-}
+};
 exports.updateTodo = async function(todo){
-    var id = todo.id
+    let oldTodo;
+    const id = todo.id;
     try{
-        var oldTodo = await ToDo.findById(id);
+        oldTodo = await ToDo.findById(id);
     }catch(e){
         throw Error("Error occured while Finding the Todo")
     }
     if(!oldTodo){
         return false;
     }
-    oldTodo.title = todo.title
-    oldTodo.description = todo.description
-    oldTodo.status = todo.status
+    oldTodo.title = todo.title;
+    oldTodo.description = todo.description;
+    oldTodo.status = todo.status;
     try{
-        var savedTodo = await oldTodo.save()
-        return savedTodo;
+        return await oldTodo.save();
     }catch(e){
         throw Error("And Error occured while updating the Todo");
     }
-}
+};
 exports.deleteTodo = async function(id){
     try{
-        var deleted = await ToDo.remove({_id: id})
+        const deleted = await ToDo.remove({_id: id});
         if(deleted.result.n === 0){
             throw Error("Todo Could not be deleted")
         }
@@ -56,4 +54,4 @@ exports.deleteTodo = async function(id){
     }catch(e){
         throw Error("Error Occured while Deleting the Todo")
     }
-}
+};
