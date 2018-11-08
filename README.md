@@ -13,3 +13,5 @@ Steps to run Application:
 3. Install mongodb and create todoapp database.
 4. Change directory to backend todoapp and do npm install && npm start.
 5. Go to http://localhost:3001 and use the application.
+
+Unit Tests are adding using jest and supertest.
